@@ -1,0 +1,46 @@
+<h2>Products</h2>
+<!-- *ngFor is a "structural directive". Structural directives shape or reshape the DOM's structure, typically by adding, removing, and manipulating the elements to which they are attached. Any directive with an asterisk, *, is a structural directive. -->
+<div *ngFor="let product of productList; index as productId">
+	<h3>
+		<!-- To make each product name a link to product details, add the <a> element and set its title to be the product's name by using the property binding [ ] syntax, as follows: -->
+		<!-- routerLink directive configures the component template to define how the user navigates to the route or URL. When the user clicks a product name, the app displays the details for that product. -->
+		<!-- Open product-list.component.html.
+
+Update the *ngFor directive to assign each index in the products array to the productId variable when iterating over the list.
+
+Modify the product name anchor to include a routerLink. -->
+		<!-- The RouterLink directive gives the router control over the anchor element. In this case, the route, or URL, contains one fixed segment, /products, while the final segment is variable, inserting the id property of the current product. For example, the URL for a product with an id of 1 will be similar to https://getting-started-myfork.stackblitz.io/products/1. -->
+		<!-- Notice that the URL in the preview window changes. The final segment is products/# where # is the number of the route you clicked. -->
+		<a [title]="product.name + product.description" [routerLink]="['/products', productId]">
+			<!-- To display the names of the products, use the interpolation syntax {{ }}. Interpolation renders a property's value as text. Inside the <div>, add an <h3> to display the interpolation of the product's name property: -->
+			{{ product.name }}
+		</a>
+	</h3>
+	<!-- Interpolation {{ }} lets you render the property value as text; property binding [ ] lets you use the property value in a template expression. -->
+	<!-- On the <p> element, use an *ngIf directive so that Angular only creates the <p> element if the current product has a description. -->
+	<p *ngIf="product.description">
+		{{product.description}}
+	</p>
+	<!-- Bind the button's click event to the share() method (in product-list.component.ts). Event binding uses a set of parentheses, ( ), around the event, as in the following <button> element: -->
+	<button (click)="share()">Share</button>
+	<!-- Display the new product alert component as a child of the product list.
+
+Open product-list.component.html.
+
+To include the new component, use its selector, app-product-alerts, as you would an HTML element.
+
+Pass the current product as input to the component using property binding. -->
+	<app-product-alerts [products]="product" (notify)="onNotify()"></app-product-alerts>
+	<!-- The new product alert component takes a product as input from the product list. With that input, it shows or hides the "Notify Me" button, based on the price of the product. The Phone XL price is over $700, so the "Notify Me" button appears on that product. -->
+	<!-- Finally, update the product list component to receive output from the product alerts component.
+
+In product-list.component.html, bind the app-product-alerts component (which is what displays the "Notify Me" button) to the onNotify() method of the product list component. -->
+</div>
+<!-- 
+In the process, you've learned to use five common features of Angular's template syntax:
+
+*ngFor
+*ngIf
+Interpolation {{ }}
+Property binding [ ]
+Event binding ( ) -->

@@ -1,0 +1,11 @@
+<!-- Update the template to display product details information inside an *ngIf. -->
+
+<!-- Now, when users click on a name in the product list, the router navigates them to the distinct URL for the product, swaps out the product list component for the product details component, and displays the product details. -->
+<h2>Product Details</h2>
+
+<div *ngIf="product">
+	<h3>{{ product.name }}</h3>
+	<h4>{{ product.price | currency }}</h4>
+	<p>{{ product.description }}</p>
+	<button (click)="addToCart(product)">Buy</button>
+</div>

@@ -1,0 +1,12 @@
+<!-- Open the product-alerts.component.html template and replace the placeholder paragraph with a "Notify Me" button that appears if the product price is over $700. -->
+<p *ngIf="products.price > 700">
+	<!-- To make the "Notify Me" button work, you need to configure two things:
+
+the product alert component to emit an event when the user clicks "Notify Me"
+the product list component to act on that event
+Open product-alerts.component.ts.
+
+ -->
+	<!-- In the product alert template, product-alerts.component.html, update the "Notify Me" button with an event binding to call the notify.emit() method. -->
+	<button (click)="notify.emit()">Notify Me</button>
+</p>
